@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2325971",
+      "name": "安卓",
+      "font_class": "anzhuo",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "6808502",
+      "name": "Windows",
+      "font_class": "Windows",
+      "unicode": "edd4",
+      "unicode_decimal": 60884
+    },
+    {
+      "icon_id": "11776583",
+      "name": "ios",
+      "font_class": "ios",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "12754055",
+      "name": "播放",
+      "font_class": "bofang_huaban",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    }
+  ]
+}
