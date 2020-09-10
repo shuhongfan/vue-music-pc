@@ -19,7 +19,10 @@ import {
   pagination,
   table,
   tableColumn,
-  Loading
+  Loading,
+  tag,
+  MessageBox,
+  divider
 } from 'element-ui'
 
 Vue.use(Button)
@@ -42,3 +45,8 @@ Vue.use(pagination)
 Vue.use(table)
 Vue.use(tableColumn)
 Vue.use(Loading)
+Vue.use(tag)
+Vue.use(divider)
+
+// 将 MessageBox 直接挂在 Vue 实例上
+Vue.prototype.$messagebox = MessageBox

@@ -7,6 +7,7 @@ import LatestSongs from '../components/LatestSongs/LatestSongs'
 import Recommend from '../components/Recommend/Recommend'
 import Search from '../components/Search/Search'
 import MVdetails from '@/components/MVdetails/MVdetails'
+import PlaylistDetail from '@/components/PlaylistDetail/PlaylistDetail'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/mvdetails/:mvid',
     name: 'MVdetails',
     component: MVdetails
+  },
+  {
+    path: '/playlistdetail/:listId',
+    name: 'PlaylistDetail',
+    component: PlaylistDetail
   }
 ]
 

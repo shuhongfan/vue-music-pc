@@ -30,6 +30,7 @@ Vue.filter('timeformat', (dataStr, pattern = 'mm:ss') => {
   return moment(dataStr).format(pattern)
 })
 
+// vue全局注册加载
 Vue.prototype.openLoading = function () {
   const loading = this.$loading({
     lock: true,

@@ -5,11 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    musicId: ''
+    musicId: '',
+    MVid: ''
   },
   mutations: {
-    setMusicID (state, url) {
-      state.musicId = url
+    setMusicID (state, id) {
+      state.musicId = id
+    },
+    setMVID (state, id) {
+      state.MVid = id
+    },
+    cleanMusicID (state, id) {
+      state.musicId = ''
     }
   },
   actions: {

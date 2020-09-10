@@ -13,9 +13,8 @@
       </el-row>
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in catlists" :key="item" :label="item" :name="item">
-<!--          {{item}}-->
           <el-row :gutter="12">
-            <el-col :span="4" v-for="item in playlists" :key="item.id">
+            <el-col :span="4" v-for="item in playlists" :key="item.id" @click.native="goPlaylistDeltail(item.id)">
               <el-card class="RecommendCard" :body-style="{ padding: '0px' }">
                 <img :src="item.coverImgUrl" class="image">
                 <div>
@@ -99,6 +98,10 @@ export default {
       console.log(`当前页: ${val}`)
       this.currentPage = val
       this.playLists()
+    },
+    goPlaylistDeltail (id) {
+      console.log(id)
+      this.$router.push('/playlistdetail/' + id)
     }
   }
 }

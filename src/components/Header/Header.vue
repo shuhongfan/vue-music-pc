@@ -1,14 +1,14 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect">
     <el-menu-item index="/">
-      <img src="./logo.png" alt="music" class="logo">
+      <img src="./img/logo.png" alt="music" class="logo">
     </el-menu-item>
     <el-menu-item index="discover">发现音乐</el-menu-item>
     <el-menu-item index="recommend">推荐歌单</el-menu-item>
     <el-menu-item index="latestSongs">最新音乐</el-menu-item>
     <el-menu-item index="latestMVs">最新MV</el-menu-item>
     <el-menu-item class="search">
-      <el-input placeholder="请输入歌曲" v-model="search" class="input-with-select">
+      <el-input placeholder="请输入歌曲" v-model="search" class="input-with-select" @keydown.enter.native="searchByName">
         <el-button @click="searchByName" slot="append" icon="el-icon-search">搜索</el-button>
       </el-input>
     </el-menu-item>
@@ -29,6 +29,9 @@ export default {
       val = val.slice(1)
       console.log(val)
       this.activeIndex = val
+    },
+    '$route.params.songName': function (val) {
+      this.search = val
     }
   },
   methods: {
