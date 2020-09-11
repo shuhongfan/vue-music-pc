@@ -52,6 +52,12 @@ export default {
   created () {
     this.getMVUrl()
   },
+  watch: {
+    '$store.state.MVid': function (val) {
+      console.log(val)
+      this.getMVUrl()
+    }
+  },
   methods: {
     async getMVUrl () {
       const result = await this.axios.get('/mv/url', {

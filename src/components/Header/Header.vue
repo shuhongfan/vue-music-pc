@@ -1,6 +1,6 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="/">
+    <el-menu-item>
       <img src="./img/logo.png" alt="music" class="logo">
     </el-menu-item>
     <el-menu-item index="discover">发现音乐</el-menu-item>
@@ -8,8 +8,8 @@
     <el-menu-item index="latestSongs">最新音乐</el-menu-item>
     <el-menu-item index="latestMVs">最新MV</el-menu-item>
     <el-menu-item class="search">
-      <el-input placeholder="请输入歌曲" v-model="search" class="input-with-select" @keydown.enter.native="searchByName">
-        <el-button @click="searchByName" slot="append" icon="el-icon-search">搜索</el-button>
+      <el-input placeholder="请输入音乐/歌单/MV/歌手" v-model="search" class="input-with-select" @keydown.enter.native="searchByName">
+        <el-button @click="searchByName" slot="append" type="mini" icon="el-icon-search"></el-button>
       </el-input>
     </el-menu-item>
   </el-menu>
@@ -42,6 +42,14 @@ export default {
       }
     },
     searchByName () {
+      console.log(this.search)
+      if (this.search === '' || this.search == null) {
+        this.$message({
+          message: '请输入音乐/歌单/MV/歌手',
+          type: 'error'
+        })
+        return false
+      }
       this.$router.push('/search/' + this.search)
     }
   }
@@ -50,7 +58,13 @@ export default {
 
 <style scoped lang="less">
 .logo{
-  height: 40px;
+  height: 60px;
+}
+.el-menu-item:first-child{
+  border-bottom: none!important;
+}
+.el-menu-item:last-child{
+  border-bottom: none!important;
 }
 .search{
   float: right!important;

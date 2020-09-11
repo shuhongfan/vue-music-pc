@@ -1,7 +1,7 @@
 <template>
   <aplayer
     :autoplay='true'
-    v-if="Lyric"
+    v-if="musicUrl"
     ref="player"
     :showLrc="true"
     repeat="repeat-one"

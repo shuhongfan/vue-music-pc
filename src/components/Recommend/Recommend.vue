@@ -55,7 +55,7 @@ export default {
       playlists: [],
       total: 0,
       pageSize: 30,
-      pageSizes: [18, 30, 48, 100, 200, 300, 400],
+      pageSizes: [18, 30, 48, 60, 80, 100],
       currentPage: 1
     }
   },

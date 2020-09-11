@@ -102,6 +102,7 @@ export default {
       this.activeID = this.catlists[res].id
     },
     handleClick (tab, event) {
+      this.rLoading = this.openLoading()
       this.findSongID()
       this.getSongList()
     },
@@ -111,7 +112,11 @@ export default {
     },
     handleRowChange (row, event, column) {
       console.log(row, event, column)
-      this.playMusic(row.id)
+      // this.playMusic(row.id)
+      this.goSongDetails(row.id)
+    },
+    goSongDetails (id) {
+      this.$router.push('/songdetails/' + id)
     }
   }
 }

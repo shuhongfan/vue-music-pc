@@ -8,12 +8,17 @@ import Recommend from '../components/Recommend/Recommend'
 import Search from '../components/Search/Search'
 import MVdetails from '@/components/MVdetails/MVdetails'
 import PlaylistDetail from '@/components/PlaylistDetail/PlaylistDetail'
+import SongDetails from '@/components/SongDetails/SongDetails'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    redirect: 'discover'
+  },
+  {
+    path: '*',
     redirect: 'discover'
   },
   {
@@ -45,6 +50,11 @@ const routes = [
     path: '/mvdetails/:mvid',
     name: 'MVdetails',
     component: MVdetails
+  },
+  {
+    path: '/songdetails/:songid',
+    name: 'SongDetails',
+    component: SongDetails
   },
   {
     path: '/playlistdetail/:listId',

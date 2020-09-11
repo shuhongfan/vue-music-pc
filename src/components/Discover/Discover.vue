@@ -10,7 +10,7 @@
       <el-tabs v-model="activeRecommend">
         <el-tab-pane label="推荐歌单" name="Recommend">
           <el-row :gutter="12">
-            <el-col :span="4" v-for="item in personalized" :key="item.id">
+            <el-col :span="4" v-for="item in personalized" :key="item.id" @click.native="goPlaylistDeltail(item.id)">
               <el-card class="RecommendCard" :body-style="{ padding: '0px' }">
                 <img :src="item.picUrl" class="image">
                 <div>
@@ -26,9 +26,9 @@
       <el-tabs v-model="activeLatestSongs">
         <el-tab-pane label="最新音乐" name="LatestSongs">
           <el-row :gutter="12">
-            <el-col :span="12" v-for="item in latestSongs" :key="item.id" @click.native="playMusic(item.id)">
+            <el-col :span="12" v-for="item in latestSongs" :key="item.id" @click.native="goSongDetails(item.id)">
               <el-card class="LatestSongsCard">
-                <img :src="item.picUrl" class="image">
+                <img :src="item.picUrl" class="image" @click.native="playMusic(item.id)">
                 <div>
                   <p>{{item.name}}</p>
                   <p>{{item.song.artists[0].name}}</p>
@@ -44,7 +44,7 @@
       <el-tabs v-model="activeLateMVs">
         <el-tab-pane label="最新音乐" name="LateMVs">
           <el-row :gutter="12">
-            <el-col :span="6" v-for="item in latestMVs" :key="item.id">
+            <el-col :span="6" v-for="item in latestMVs" :key="item.id" @click.native="goMvDetails(item.id)">
               <el-card class="latestMVsCard" :body-style="{ padding: '0px' }">
                 <img :src="item.picUrl" class="image">
                 <div>
@@ -113,6 +113,16 @@ export default {
     playMusic (id) {
       console.log(id)
       this.setMusicID(id)
+    },
+    goPlaylistDeltail (id) {
+      console.log(id)
+      this.$router.push('/playlistdetail/' + id)
+    },
+    goMvDetails (id) {
+      this.$router.push('/mvdetails/' + id)
+    },
+    goSongDetails (id) {
+      this.$router.push('/songdetails/' + id)
     }
   }
 }

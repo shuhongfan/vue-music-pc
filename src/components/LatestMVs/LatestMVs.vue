@@ -56,7 +56,7 @@ export default {
       type: '全部',
       order: '最热',
       currentPage: 1,
-      pageSizes: [20, 50, 100, 200, 300, 400],
+      pageSizes: [10, 20, 50, 80, 100],
       pageSize: 20,
       total: 0,
       mvLists: []

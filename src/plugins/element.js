@@ -22,7 +22,8 @@ import {
   Loading,
   tag,
   MessageBox,
-  divider
+  divider,
+  Message
 } from 'element-ui'
 
 Vue.use(Button)
@@ -50,3 +51,5 @@ Vue.use(divider)
 
 // 将 MessageBox 直接挂在 Vue 实例上
 Vue.prototype.$messagebox = MessageBox
+Vue.prototype.$message = Message
+Vue.prototype.$alert = MessageBox.alert

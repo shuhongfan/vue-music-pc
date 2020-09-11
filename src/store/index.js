@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     cleanMusicID (state, id) {
       state.musicId = ''
+    },
+    clearMVID (state, id) {
+      state.MVid = ''
     }
   },
   actions: {

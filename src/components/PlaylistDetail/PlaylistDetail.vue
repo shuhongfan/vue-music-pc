@@ -70,7 +70,7 @@
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="评论" name="comment">
-        <div>
+        <div v-if="hotComment[0]">
           <h3>精彩评论</h3>
           <el-card class="CommentCard"  v-for="item in hotComment" :key="item.commentId">
             <img :src="item.user.avatarUrl">
@@ -98,7 +98,7 @@
             :total="hotCount">
           </el-pagination>
         </div>
-        <div>
+        <div v-if="comments[0]">
           <h3>最新评论</h3>
           <el-card class="CommentCard"  v-for="item in comments" :key="item.commentId">
             <img :src="item.user.avatarUrl">
@@ -141,7 +141,7 @@ export default {
       listId: this.$route.params.listId,
       playlist: {},
       type: 2,
-      pageSizes: [10, 20, 50, 100, 200, 300, 400],
+      pageSizes: [10, 20, 50, 80, 100],
       hotPageSize: 10,
       hotCurrentPage: 1,
       hotComment: [],
@@ -222,7 +222,7 @@ export default {
     },
     handleRowChange (row, event, column) {
       console.log(row, event, column)
-      this.playMusic(row.id)
+      this.goSongDetails(row.id)
     },
     hotHandleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -243,6 +243,9 @@ export default {
       console.log(`当前页: ${val}`)
       this.currentPage = val
       this.getLatestComments()
+    },
+    goSongDetails (id) {
+      this.$router.push('/songdetails/' + id)
     }
   }
 }

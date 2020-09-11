@@ -49,7 +49,7 @@
         </el-tab-pane>
         <el-tab-pane label="歌单" name="songLists">
           <el-row :gutter="12">
-            <el-col :span="4" v-for="item in playlists" :key="item.id">
+            <el-col :span="4" v-for="item in playlists" :key="item.id" @click.native="goPlaylistDeltail(item.id)">
               <el-card class="RecommendCard" :body-style="{ padding: '0px' }">
                 <img :src="item.coverImgUrl" class="image">
                 <div>
@@ -96,7 +96,7 @@ export default {
       type: 1,
       currentPage: 1,
       // total: 0,
-      pageSizes: [20, 50, 100, 200, 300, 400],
+      pageSizes: [10, 20, 50, 80, 100],
       pageSize: 30,
       keywords: this.$route.params.songName,
       songsList: [],
@@ -197,15 +197,23 @@ export default {
       console.log(id)
       this.setMusicID(id)
     },
+    goPlaylistDeltail (id) {
+      console.log(id)
+      this.$router.push('/playlistdetail/' + id)
+    },
     handleRowChange (row, event, column) {
       console.log(row, event, column)
-      this.playMusic(row.id)
+      this.goSongDetails(row.id)
+      // this.playMusic(row.id)
     },
     goMvDetails (id) {
       this.$router.push('/mvdetails/' + id)
     },
     searchByName () {
       this.$router.push('/search/' + this.keywords)
+    },
+    goSongDetails (id) {
+      this.$router.push('/songdetails/' + id)
     }
   }
 }
