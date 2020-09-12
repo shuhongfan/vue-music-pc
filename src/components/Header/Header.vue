@@ -1,7 +1,8 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect">
     <el-menu-item>
-      <img src="../../assets/img/logo.png" alt="music" class="logo">
+      <img src="/https://shuhongfan.gitee.io/vue-music-pc/img/logo.48e69dc3.png" alt="music" class="logo">
+<!--      <img src="../../assets/img/logo.png" alt="music" class="logo">-->
     </el-menu-item>
     <el-menu-item index="discover">发现音乐</el-menu-item>
     <el-menu-item index="recommend">推荐歌单</el-menu-item>
