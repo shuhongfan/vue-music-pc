@@ -7,9 +7,7 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer>
-        <Aplayer v-if="musicId" class="aplayer"></Aplayer>
-      </el-footer>
+      <Aplayer class="aplayer" v-drag></Aplayer>
     </el-container>
     <Footer></Footer>
   </div>
@@ -29,20 +27,32 @@ export default {
   },
   computed: {
     ...mapState(['musicId'])
+  },
+  directives: {
+    // vue跟随鼠标拖动指令
+    drag (el, bindings) {
+      el.onmousedown = function (e) {
+        var disx = e.pageX - el.offsetLeft
+        var disy = e.pageY - el.offsetTop
+        document.onmousemove = function (e) {
+          el.style.left = e.pageX - disx + 'px'
+          el.style.top = e.pageY - disy + 'px'
+        }
+        document.onmouseup = function () {
+          document.onmousemove = document.onmouseup = null
+        }
+      }
+    }
   }
 }
 </script>
 
 <style scoped lang="less">
-.el-footer{
-  z-index: 99999;
+.aplayer{
   position: fixed;
-  bottom: 30px;
+  top: 50%;
   left: 50%;
-  margin-left: -620px;
-  .aplayer{
-    width: 1200px;
-    margin: 0 auto;
-  }
+  transform: translate(-50%,-50%);
+  width: 450px;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <video-player  class="vjs-custom-skin"
                  ref="videoPlayer"
+                 @pause="onPlayerPause($event)"
                  :options="playerOptions"
                  :playsinline="true">
   </video-player>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import 'video.js/dist/video-js.css'
 import { videoPlayer } from 'vue-video-player'
 export default {
@@ -44,7 +45,7 @@ export default {
     videoPlayer
   },
   computed: {
-    ...mapState(['MVid']),
+    ...mapState(['MVid', 'flag']),
     player () {
       return this.$refs.videoPlayer.player
     }
@@ -56,9 +57,18 @@ export default {
     '$store.state.MVid': function (val) {
       console.log(val)
       this.getMVUrl()
+    },
+    '$store.state.flag': function (val) {
+      console.log(val)
+      if (val === 1) {
+        this.PlayerPlay()
+      } else {
+        this.PlayerPause()
+      }
     }
   },
   methods: {
+    ...mapMutations(['setFlag']),
     async getMVUrl () {
       const result = await this.axios.get('/mv/url', {
         params: {
@@ -68,6 +78,16 @@ export default {
       console.log(result)
       this.MVUrl = result.data.data.url
       this.playerOptions.sources[0].src = this.MVUrl
+    },
+    PlayerPlay () {
+      this.$refs.videoPlayer.player.play()
+    },
+    PlayerPause () {
+      this.$refs.videoPlayer.player.pause()
+    },
+    onPlayerPause (player) {
+      console.log('player pause!', player)
+      this.setFlag(-1)
     }
   }
 }

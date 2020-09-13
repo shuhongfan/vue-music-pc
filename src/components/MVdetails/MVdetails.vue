@@ -114,7 +114,7 @@ export default {
     '$route.params.mvid': function (val) {
       console.log(val)
       this.clearMVID()
-      this.cleanMusicID()
+      this.setFlag(1)
       this.setMVID(val)
       this.getSimiMV()
       this.getMVDetail()
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setMVID', 'cleanMusicID', 'clearMVID']),
+    ...mapMutations(['setMVID', 'cleanMusicID', 'clearMVID', 'setFlag']),
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
       this.pageSize = val
@@ -184,7 +184,7 @@ export default {
   mounted () {
     this.clearMVID()
     this.setMVID(this.mvid)
-    this.cleanMusicID()
+    this.setFlag(1)
     this.getSimiMV()
     this.getMVDetail()
     this.getMVComments()

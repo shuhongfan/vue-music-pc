@@ -4,7 +4,11 @@
     v-if="musicUrl"
     ref="player"
     :showLrc="true"
+    :float="true"
+    :mutex="true"
+    :controls="true"
     repeat="repeat-one"
+    :list="playLists"
     :music="{
         title: this.songName,
         artist: this.songArtist,
@@ -16,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import aplayer from 'vue-aplayer'
 export default {
   name: 'Aplayer',
@@ -33,24 +37,45 @@ export default {
     aplayer
   },
   computed: {
-    ...mapState(['musicId'])
-  },
-  async mounted () {
-    await this.getMusic()
-    await this.getSongDetail()
-    await this.getLyric()
+    ...mapState(['musicId', 'playLists', 'flag'])
   },
   watch: {
     '$store.state.musicId': function (val) {
       if (val) {
-        this.getMusic()
-        this.getSongDetail()
-        this.getLyric()
-        return val
+        this.init()
+      }
+    },
+    '$store.state.flag': function (val) {
+      console.log(val)
+      if (val === 0) {
+        this.play()
+      } else {
+        this.pause()
       }
     }
   },
   methods: {
+    ...mapMutations(['setPlayLists', 'setFlag', 'cleanMusicID']),
+    async init () {
+      await this.getMusic()
+      await this.getSongDetail()
+      await this.getLyric()
+      await setTimeout(() => {
+        console.log(this.playLists.findIndex(item => item.title === this.songName))
+        if (this.playLists.findIndex(item => item.title === this.songName) === -1) {
+          this.setPlayLists({
+            title: this.songName,
+            artist: this.songArtist,
+            src: this.musicUrl,
+            pic: this.songPicUrl,
+            lrc: this.Lyric
+          })
+        }
+      }, 1000)
+      await setTimeout(() => {
+        this.play()
+      }, 1200)
+    },
     async getMusic () {
       const result = await this.axios.get('/song/url', {
         params: {
@@ -79,6 +104,12 @@ export default {
       })
       console.log(result)
       this.Lyric = result.data.lrc.lyric
+    },
+    play () {
+      this.$refs.player.play()
+    },
+    pause () {
+      this.$refs.player.pause()
     }
   }
 }
