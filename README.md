@@ -1,5 +1,9 @@
 # **基于Vue.js和网易云音乐API的Web音乐播放器**
 
+##### 移动端在线查看地址：[http://9z0pvw.coding-pages.com](http://9z0pvw.coding-pages.com/)
+
+##### PC端在线查看地址：[http://mlnz0x.coding-pages.com](http://mlnz0x.coding-pages.com/)
+
 **目录**
 
 [第一章 准备 1](#_Toc29511)
